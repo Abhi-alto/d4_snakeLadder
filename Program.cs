@@ -5,7 +5,7 @@ const int Start = 0, End = 100;                          //represent start posit
 int position = Start;                                      //current position of the player
 Console.WriteLine(n+" is at the " + position + " position in "+" the starting");
 
-while (position <= 100)                                 
+while (position < 100)                                 
 {
     int dice = new Random().Next(1, 7);                         //gets value dice value
     Console.WriteLine(n + " has got " + dice);
@@ -14,18 +14,22 @@ while (position <= 100)
     int opt = new Random().Next(0, 3);                            //three values
     if (opt == 0)
     {
-        Console.Write("No Play .... remain at ");
+       Console.Write("No Play .... remain at ");
     }
     else if (opt == 1)
     {
-        Console.Write("Earned a Ladder ......jumped to ");
+       Console.Write("Earned a Ladder ......jumped to ");
         position = position + dice;
+        if (position > End)                               //Restart condition
+        {
+            position = position - dice;
+        }
     }
     else
     {
         Console.Write("Snake .... back to ");
         position = position - dice;
-        if (position < 0)                               //Restart condition
+        if (position < Start)                               //Restart condition
         {
             position = 0;
         }
