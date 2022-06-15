@@ -40,4 +40,7 @@ while (position < 100)
     Console.WriteLine();
 }
 Console.WriteLine("Won the game");
+<<<<<<< HEAD
 Console.WriteLine("No. of times the dice was rolled = "+counter);       
+=======
+>>>>>>> 7f4e53e3efc3422ea0d930295fb0d0a250293b28
