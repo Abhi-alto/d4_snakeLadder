@@ -20,7 +20,7 @@ while (position < 100)
     {
        Console.Write("Earned a Ladder ......jumped to ");
         position = position + dice;
-        if (position > End)                               //Restart condition
+        if (position > End)                               //End condition
         {
             position = position - dice;
         }
