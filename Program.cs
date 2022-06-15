@@ -1,46 +1,43 @@
+using Ques2;
 Console.WriteLine("Welcome to snake and Ladder game");
-Console.WriteLine("Enter player name");                     //for single player
-String n = Console.ReadLine();
+Console.WriteLine("Enter player 1 name");                    //Player names
+String n1 = Console.ReadLine();
+Console.WriteLine("Enter player 2 name");                     
+String n2= Console.ReadLine();
 const int Start = 0, End = 100;                          //represent start position i.e 0 & end position i.e 100
-int position = Start;                                   //current position of the player
-int counter = 0;         //for no. of times the dice is rolled
-Console.WriteLine(n+" is at the " + position + " position in "+" the starting");
-
-while (position < 100)                                 
+int p1 = Start, p2 = Start;                                   //current position of the player   
+int x = 0;                                       //For giving chances alternatly to the players to throw the dice
+while (p1 < End && p2<End)                                 //If either person comes to 100 loop terminates 
 {
-    int dice = new Random().Next(1, 7);           //gets value dice value
-    Console.WriteLine(n + " has got " + dice);
-    counter++;
-
-    Console.Write("Lets see ");
-    int opt = new Random().Next(0, 3);                            //three values
-    if (opt == 0)
+    int option = new Random().Next(0, 3);                            //three values
+    if (x%2==0)                                                     
     {
-       Console.Write("No Play .... remain at ");
-    }
-    else if (opt == 1)
-    {
-       Console.Write("Earned a Ladder ......jumped to ");
-        position = position + dice;
-        if (position > End)                               //End condition
+        Console.WriteLine(n1 + "'s chance");
+         p1 = dice.posi(option,p1);
+        if(option==1 && p1!=End)                            //if the person gets option of ladder 
         {
-            position = position - dice;
+            while(option==1 && p1!=End)                     //If the person gets repeatedly gets ladder nad also check if it has reached 100 
+            {
+                option = new Random().Next(0, 3);          
+                p1 = dice.posi(option,p1);
+            }
         }
     }
     else
     {
-        Console.Write("Snake .... back to ");
-        position = position - dice;
-        if (position < Start)                               //Restart condition
+        Console.WriteLine(n2 + "'s chance");
+        p2 = dice.posi(option,p2);
+        if (option == 1 && p1 != End)                       //if the person gets option of ladder 
         {
-            position = 0;
+            while (option == 1 && p2 != End)                 //If the person gets repeatedly gets ladder nad also check if it has reached 100      
+            {
+                option = new Random().Next(0, 3);
+                p2 = dice.posi(option,p2);
+            }
         }
     }
-    Console.WriteLine(position);                        //prints the position at the end of one dice throwing process
-    Console.WriteLine();
+    x++;
 }
-Console.WriteLine("Won the game");
-<<<<<<< HEAD
-Console.WriteLine("No. of times the dice was rolled = "+counter);       
-=======
->>>>>>> 7f4e53e3efc3422ea0d930295fb0d0a250293b28
+String won = p1 > p2 ? n1 : n2;
+Console.WriteLine(won+" won the game");
+      
